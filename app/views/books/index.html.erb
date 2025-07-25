@@ -20,7 +20,7 @@
             <div class="mb-3">
               <%= select_tag :genre_id, options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]), include_blank: "All Genres", class: "form-select" %>
             </div>
-            <%= submit_ta "Search", class: "btn btn-primary w-100" %>
+            <%= submit_tag "Search", class: "btn btn-primary w-100" %>
           <% end %>
         </div>
       </div>
