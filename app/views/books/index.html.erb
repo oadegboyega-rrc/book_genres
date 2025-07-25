@@ -27,18 +27,31 @@
       <%= link_to "New book", new_book_path, class: "btn btn-success w-100 mb-4" %>
     </div>
     <div class="col-md-9">
-      <div class="row row-cols-1 row-cols-md-3 g-4" id="books">
-        <% @books.each do |book| %>
-          <div class="col d-flex align-items-stretch">
-            <%= render book %>
-            <p>
-              <%= link_to "Show this book", book, class: "btn btn-outline-primary btn-sm mt-2" %>
-            </p>
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Books List</h4>
+        </div>
+        <div class="card-body">
+          <div class="row" id="books">
+            <% if @books.any? %>
+              <% @books.each do |book| %>
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                  <%= render book %>
+                  <p>
+                    <%= link_to "Show this book", book, class: "btn btn-outline-primary btn-sm mt-2" %>
+                  </p>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="col">
+                <p>No books found.</p>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-      </div>
-      <div class="pagination d-flex justify-content-center mt-4">
-      
+          <div class="pagination d-flex justify-content-center mt-4">
+            <%= paginate @books, theme: 'bootstrap4' %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

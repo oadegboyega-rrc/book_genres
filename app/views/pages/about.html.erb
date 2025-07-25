@@ -1,8 +1,20 @@
-<h1>About</h1>
-<p>This app uses the Open Library API for books and authors, and Faker for genres and reviews.</p>
-<pre>
-erDiagram
-  AUTHOR ||--o{ BOOK : writes
-  BOOK ||--o{ REVIEW : has
-  BOOK }o--o{ GENRE : categorized_as
-</pre>
+<div class="container mt-5" id="about">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">About This Project</h2>
+        </div>
+        <div class="card-body">
+          <p>
+            This project uses the <strong>Faker</strong> library to generate realistic fake data for testing and development purposes. Faker helps create sample names, emails, addresses, and other data quickly, so we can build and test our app without needing real user information.
+          </p>
+          <p>
+            Using Faker makes it easier to populate the database with meaningful data, which improves testing accuracy and helps demonstrate how the app behaves with real-world-like content.
+          </p>
+          <p>Fake dataset using Faker for books, authors, and publishers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
