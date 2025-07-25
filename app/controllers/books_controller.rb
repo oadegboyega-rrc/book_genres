@@ -1,15 +1,15 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
 
-  # GET /books or /books.json
-def index
-  @books = Book.all
-  @books = @books.where("title LIKE ?", "%#{params[:q]}%") if params[:q].present?
-  @books = @books.joins(:genres).where(genres: { id: params[:genre_id] }) if params[:genre_id].present?
-  @books = @books.page(params[:page])
-end
+  # GET /books
+  def index
+    @books = Book.all
+    @books = @books.where("title LIKE ?", "%#{params[:q]}%") if params[:q].present?
+    @books = @books.joins(:genres).where(genres: { id: params[:genre_id] }) if params[:genre_id].present?
+    @books = @books.page(params[:page])
+  end
 
-  # GET /books/1 or /books/1.json
+  # GET /books/1
   def show
   end
 
@@ -22,12 +22,7 @@ end
   def edit
   end
 
-  # pagination
-  def index
-  @books = Book.page(params[:page])
-  end
-
-  # POST /books or /books.json
+  # POST /books
   def create
     @book = Book.new(book_params)
 
@@ -42,7 +37,7 @@ end
     end
   end
 
-  # PATCH/PUT /books/1 or /books/1.json
+  # PATCH/PUT /books/1
   def update
     respond_to do |format|
       if @book.update(book_params)
@@ -55,12 +50,11 @@ end
     end
   end
 
-  # DELETE /books/1 or /books/1.json
+  # DELETE /books/1
   def destroy
     @book.destroy!
-
     respond_to do |format|
-      format.html { redirect_to books_path, status: :see_other, notice: "Book was successfully destroyed." }
+      format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -68,11 +62,11 @@ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
-      @book = Book.find(params.expect(:id))
+      @book = Book.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.fetch(:book, {})
+      params.require(:book).permit(:title, :publication_year, :isbn, :cover_image, :description, :author_id, genre_ids: [])
     end
 end
