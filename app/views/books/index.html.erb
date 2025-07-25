@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Books" %>
+
+<h1>Books</h1>
+
+<%= form_with url: books_path, method: :get, local: true do %>
+  <%= text_field_tag :q, params[:q], placeholder: "Search by title" %>
+  <%= select_tag :genre_id, options_from_collection_for_select(Genre.all, :id, :name, params[:genre_id]), include_blank: "All Genres" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">Main content</div>
+    <div class="col-md-4">Sidebar</div>
+  </div>
+</div>
+
+<div id="books">
+  <% @books.each do |book| %>
+    <%= render book %>
+    <p>
+      <%= link_to "Show this book", book %>
+    </p>
+  <% end %>
+</div>
+
+<div class="pagination">
+  <%= paginate @books %>
+</div>
+
+<%= link_to "New book", new_book_path %>

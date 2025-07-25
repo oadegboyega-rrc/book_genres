@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @book %>
+
+<div>
+  <%= link_to "Edit this book", edit_book_path(@book) %> |
+  <%= link_to "Back to books", books_path %>
+
+  <%= button_to "Destroy this book", @book, method: :delete %>
+</div>
+
+<% if @book.reviews.any? %>
+  <ul>
+    <% @book.reviews.each do |review| %>
+      <li><%= review.reviewer_name %>: <%= review.content %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No reviews yet.</p>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">Main content</div>
+    <div class="col-md-4">Sidebar</div>
+  </div>
+</div>
+
+<p><strong>Author:</strong> <%= @book.author.name %></p>
+<p><strong>Genres:</strong> <%= @book.genres.map(&:name).join(", ") %></p>
+<p><strong>Reviews:</strong></p>
+<ul>
+  <% @book.reviews.each do |review| %>
+    <li><%= review.reviewer_name %>: <%= review.content %> (Rating: <%= review.rating %>)</li>
+  <% end %>
+</ul>

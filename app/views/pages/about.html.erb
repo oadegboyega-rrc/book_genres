@@ -1,0 +1,8 @@
+<h1>About</h1>
+<p>This app uses the Open Library API for books and authors, and Faker for genres and reviews.</p>
+<pre>
+erDiagram
+  AUTHOR ||--o{ BOOK : writes
+  BOOK ||--o{ REVIEW : has
+  BOOK }o--o{ GENRE : categorized_as
+</pre>

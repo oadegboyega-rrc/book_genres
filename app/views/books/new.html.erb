@@ -1,0 +1,18 @@
+<% content_for :title, "New book" %>
+
+<h1>New book</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">Main content</div>
+    <div class="col-md-4">Sidebar</div>
+  </div>
+</div>
+
+<%= render "form", book: @book %>
+
+<br>
+
+<div>
+  <%= link_to "Back to books", books_path %>
+</div>

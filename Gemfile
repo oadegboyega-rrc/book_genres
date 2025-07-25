@@ -37,6 +37,7 @@ gem "kaminari"
 gem 'bootstrap', '~> 5.2'
 gem 'jquery-rails'
 gem 'httparty'        # For API calls
+gem "cssbundling-rails"
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
